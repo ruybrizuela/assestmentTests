@@ -1245,3 +1245,37 @@ const assets = [
   }
 ] 
 console.log(assets.reduce((sum, a) => sum + parseInt(a.totalPrints), 0))
+
+function reverseString(word){
+  if (typeof word !== 'string' || !word) return null;
+  let reversed = '';
+  for (let i = word.length - 1; i >= 0; i--) {
+      reversed += word[i];
+  }
+  return reversed;
+}
+
+function isAlphaNum(ch) {return ((ch >= "0" && ch <= "9") || (ch >= "A" && ch <= "Z") || (ch >= "a" && ch <= "z"));}
+
+function reverseSpecialString(word) {
+  const arr = word.split("");
+  let left = 0;
+  let right = arr.length - 1;
+  const isAlphaNum = (ch) => /[a-zA-Z0-9]/.test(ch);
+  while (left < right) {
+    if (!isAlphaNum(arr[left])) {
+      left++;
+    } else if (!isAlphaNum(arr[right])) {
+      right--;
+    } else {
+      // swap
+      const temp = arr[left];
+      arr[left] = arr[right];
+      arr[right] = temp;
+
+      left++;
+      right--;
+    }
+  }
+  return arr.join("");
+}
